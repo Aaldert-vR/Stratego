@@ -1,0 +1,24 @@
+2025-08-29 14:46:55 36528 [Note] Plugin 'FEDERATED' is disabled.
+2025-08-29 14:46:55 36528 [Note] InnoDB: The InnoDB memory heap is disabled
+2025-08-29 14:46:55 36528 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2025-08-29 14:46:55 36528 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2025-08-29 14:46:55 36528 [Note] InnoDB: Not using CPU crc32 instructions
+2025-08-29 14:46:55 36528 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2025-08-29 14:46:55 36528 [Note] InnoDB: Completed initialization of buffer pool
+2025-08-29 14:46:55 36528 [Note] InnoDB: Highest supported file format is Barracuda.
+2025-08-29 14:46:55 36528 [Note] InnoDB: The log sequence numbers 1626134 and 1626134 in ibdata files do not match the log sequence number 1626666 in the ib_logfiles!
+2025-08-29 14:46:55 36528 [Note] InnoDB: Database was not shutdown normally!
+2025-08-29 14:46:55 36528 [Note] InnoDB: Starting crash recovery.
+2025-08-29 14:46:55 36528 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2025-08-29 14:46:55 36528 [Note] InnoDB: Restoring possible half-written data pages 
+2025-08-29 14:46:55 36528 [Note] InnoDB: from the doublewrite buffer...
+2025-08-29 14:46:56 36528 [Note] InnoDB: 128 rollback segment(s) are active.
+2025-08-29 14:46:56 36528 [Note] InnoDB: Waiting for purge to start
+2025-08-29 14:46:56 36528 [Note] InnoDB: 5.6.13 started; log sequence number 1626666
+2025-08-29 14:46:56 36528 [Note] Server hostname (bind-address): '*'; port: 3307
+2025-08-29 14:46:56 36528 [Note] IPv6 is available.
+2025-08-29 14:46:56 36528 [Note]   - '::' resolves to '::';
+2025-08-29 14:46:56 36528 [Note] Server socket created on IP: '::'.
+2025-08-29 14:46:57 36528 [Note] Event Scheduler: Loaded 0 events
+2025-08-29 14:46:57 36528 [Note] C:\Users\APDekker\OneDrive - SG Pieter Zandt\Documenten\Modules - oud\JS OOP SLO\Hulpmiddelen\USBWebserver JS-OOP/mysql/bin/mysqld_usbwv8.exe: ready for connections.
+Version: '5.6.13'  socket: ''  port: 3307  MySQL Community Server (GPL)

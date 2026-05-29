@@ -1,0 +1,5 @@
+[Fri Aug 29 14:46:58.105051 2025] [mpm_winnt:notice] [pid 14232:tid 836] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Fri Aug 29 14:46:58.105051 2025] [mpm_winnt:notice] [pid 14232:tid 836] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Fri Aug 29 14:46:58.105051 2025] [core:notice] [pid 14232:tid 836] AH00094: Command line: 'C:\\Users\\APDekker\\OneDrive - SG Pieter Zandt\\Documenten\\Modules - oud\\JS OOP SLO\\Hulpmiddelen\\USBWebserver JS-OOP/apache2/bin/httpd_usbwv8.exe -d C:/Users/APDekker/OneDrive - SG Pieter Zandt/Documenten/Modules - oud/JS OOP SLO/Hulpmiddelen/USBWebserver JS-OOP/apache2'
+[Fri Aug 29 14:46:58.121055 2025] [mpm_winnt:notice] [pid 14232:tid 836] AH00418: Parent: Created child process 4560
+[Fri Aug 29 14:46:59.231027 2025] [mpm_winnt:notice] [pid 4560:tid 636] AH00354: Child: Starting 64 worker threads.
