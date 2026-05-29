@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8">
+    <title>onze stratego</title>
+    <link rel="icon" href="images/Stratego flag.jpg">
+    <link rel="stylesheet" type="text/css" href="CSS/myGame.css">
+    <script src="JS/P5/p5.min.js"></script>
+    <script src="JS/functions.js"></script>
+    <script src="JS/requests.js"></script>
+		<!--script src="JS/P5/P5.js"></script-->
+    
+    <!-- extra libraries -->
+    <script src="JS/P5/addons/p5.shape.js"></script>
+    <script src="JS/P5/addons/p5.sound.min.js"></script>
+		
+
+    <!-- alle gebruikte klasses hebben hun eigen bestand -->
+    <script src='JS/class/raster.js'></script>
+    <script src='JS/class/stuk.js'></script>
+    <script src='JS/class/speler.js'></script>
+    <script src='JS/class/spel.js'></script>
+    <script src='JS/class/background.js'></script>
+
+    <!-- Dit is het bestand met het hoofdprogramma -->
+    <script src="JS/mijnGame.js"></script>
+    <div id='mijnGame-js'></div>
+  </head>
+  <body>
+    <?php
+      //$settingsFile = fopen("settings.json", "r");
+
+    ?>
+    <h1>Stratego</h1>
+    <div id="controls" style="position:relative; padding:10px;">
+      <p id="game-message">Laden...</p>
+    </div>
+    <div id="processing"></div>
+    <div id="buttons">
+      <button onclick="window.location.href='./spelregels.html';">Spelregels</button>
+      <button onclick="document.getElementById('uitleg').classList.toggle('hide');">Uitleg onzeStratego</button>
+      <button onclick="document.getElementById('language').classList.toggle('hide');" id="language-button">Language</button>
+    </div>
+    <div id="uitleg" class="hide">
+      <p>Plaats eerst de stukken door een stuk in de kantlijn aan te klikken en op een vakje op het bord te klikken.
+        <br>
+        Dan kun je gaan spelen. Klik op stukken en verplaats ze met de pijltjestoetsen.
+      </p>
+    </div>
+    <form id="language" class="hide">
+      Nederlands <input type="radio" name="language" id="NL" onclick="checkLanguage();">
+      <br>
+      English <input type="radio" name="language" id="EN" onclick="checkLanguage();">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+}
+
+body {
+    overflow: scroll;
+    background-color: beige;
+    background: linear-gradient(to right, #0000FF, #FF0000);
+    color: white;
+}
+
+.hide{
+    display: none !important;
+}
+#uitleg{
+    display: block;
+}
+#game-message{
+    border: 4px brown;
+    border-style: double;
+    border-radius: 3%;
+    background-color: lightgray;
+    font-size: 20px;
+    color: brown;
+}

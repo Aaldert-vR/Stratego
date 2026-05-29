@@ -1,0 +1,1 @@
+"../../../tcc/tcc.exe" npx.c 

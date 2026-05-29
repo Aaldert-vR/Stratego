@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "node-json-rpc": "^0.0.1"
+  }
+}

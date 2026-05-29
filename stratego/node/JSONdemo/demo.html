@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<head>
+	<title>Demo voor JSON RPC protocol</title>
+</head>
+<body>
+	<textarea id="JSONcode" style="width: 100%;height: 8em;">{"jsonrpc": "2.0", "method": "start_spel", "params": {"token": "123456", "opties": null}, "id": 1}</textarea><br>
+	<button onclick = "submitJSON()"> versturen</button>
+
+
+	<script>
+	function submitJSON() {
+		//var JSONcode = JSON.parse(document.getElementById("JSONcode").value);
+		var JSONcodes=[];
+		//for (var i=0;i<10;i++){
+			//JSONcode.id=i;
+			//JSONcodes.push(JSON.stringify(JSONcode));
+		//}
+		JSONcodes.push(document.getElementById("JSONcode").value);
+		for (var i=0;i<1;i++){
+			const xhttp = new XMLHttpRequest();
+			xhttp.onload = function() {
+				console.log(this.responseText);
+				document.getElementById("demo").innerHTML =this.responseText;
+			
+			// Maak van het response een object en print het in de console (druk op F12 om dat te zien)
+				//var JSONresponse = JSON.parse(this.responseText);
+				//console.log(JSONresponse);
+			}
+			xhttp.open("POST", "http://localhost:8000");
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			//xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+			//xhttp.setRequestHeader("Origin", "http://localhost:8080")
+			xhttp.send("JSON="+JSONcodes[i]);
+		}
+	}
+	</script>
+
+	<pre id="demo"></pre>
+</body>
+</html>

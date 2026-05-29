@@ -1,0 +1,158 @@
+const url = require('url');
+const http = require('http');
+const fs = require('fs');
+const path=require('path');
+let querystring=require('querystring');
+let PORT = 8080;
+
+function getFile(filename){
+    let returnVal={status: 200};
+    try{
+        let fDat=fs.readFileSync(filename);
+        returnVal.contents=fDat;
+    }
+    catch(err){
+        returnVal.status=404;
+    }
+    return returnVal;
+}
+
+rpcMethods={}
+
+
+
+function JSONrpc(JSONInput){
+  let jsonObject=JSON.parse(JSONInput);
+  let method=jsonObject.method;
+  let params=jsonObject.params;
+  if (!(method in rpcMethods)){
+    return {methodExists: false, id: jsonObject.id}
+  }
+  let retVal={methodExists: true, result: rpcMethods[method](params)};
+  retVal.id=jsonObject.id;
+  return retVal;
+}
+
+async function start(port=PORT){
+    PORT=port;
+    server = http.createServer((req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    console.log(res.headers);
+    let index=false;
+    let referer="";
+    let requestUrl=url.parse(req.url);
+    
+    if(req.headers.referer!=undefined){
+        referer="."+url.parse(req.headers.referer).pathname;
+    }
+    if (requestUrl.href.includes(requestUrl.host)){
+        requestUrl.href="./"+requestUrl.pathname
+        
+    }
+    let requrl=path.join(referer, req.url);
+    console.log(req.url);
+    console.log(req.method);
+    console.log(req._header);
+    console.log(requrl);
+    console.log(res);
+    if (req.url=="/" || req.url==""){
+        if (req.method=="POST"){
+            res.status=200;
+            let data='';
+            req.on('data', chunk => {
+                data+=chunk.toString();
+            });
+            req.on('end', () => {
+                res.statusCode=200;
+                console.log(data);
+                let q=querystring.parse(data);
+                var r=JSONrpc(q.JSON);
+                if (!(r.methodExists)){
+                    r.result="404 function not found";
+                }
+                delete r.methodExists;
+                r.JSONrpc="2.0";
+                abc=r.result;
+                delete r.result;
+                r.result=abc;
+                abc=r.id;
+                delete r.id;
+                r.id=abc;
+                console.log(r)
+                res.end(JSON.stringify(r));
+                console.log(res);
+            })
+            //res.end(JSON.stringify(data));
+        }
+        else{
+            index=true;
+        }
+    }
+    if((requrl!="./" && requrl!="") || index){
+        let q=url.parse(requrl,true);
+        //console.log(q);
+        //console.log(__dirname);
+        //console.log("host");
+        ///console.log(req.host);
+        //res.end(JSON.stringify(req));
+        //let requrl=path.join(__dirname, q.pathname);
+        //let requrl=q.pathname;
+        const fName = path.basename(requrl);
+        
+        let fPath = path.relative(requrl,__dirname);
+        if (fName.includes(".")) {
+            const f = getFile(requrl);
+            if (f.status == 404) {
+                res.status=404;
+                res.end();
+            }
+            else {
+                res.status=200;
+                res.end(f.contents);
+            }
+        }
+        else {
+            if (requrl[requrl.length] != "") {
+                requrl += "/";
+            }
+            if (!fs.existsSync(requrl)) {
+                res.status=404;
+                res.end();
+            }
+            else {
+                res.status=200;
+                const data = fs.readdirSync(requrl);
+                if (data.includes("index.html")) {
+                    res.end(getFile(requrl + "index.html").contents);
+                }
+                else {
+                    let retVal = "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Index of " + path.relative(requrl, __dirname) + "</title>\n\t</head>\n\t<body>\n\t\t<h1>Index of " + req.url + "</h1>\n\t\t<ul>";
+                    for (var i = 0; i < data.length; i++) {
+                        retVal += "\n\t\t\t<li><a href='./"+data[i] + "'>" + data[i] + "</a></li>";
+                    }
+                    retVal += "\n\t\t</ul>\n\t</body>\n</html>";
+                    res.end(retVal);
+                }
+            }
+        }
+    }
+  });
+  server.listen(PORT);
+}
+
+function updatePort(nr){
+    PORT=nr;
+    server.close();
+    server.listen(PORT);
+}
+
+function close(){
+    server.close()
+}
+exports.start=start;
+exports.rpcMethods=rpcMethods;
+exports.updatePort=updatePort;
+exports.port=function(){return PORT};
+exports.close = close;
